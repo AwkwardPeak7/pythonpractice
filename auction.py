@@ -9,6 +9,7 @@ item = [] # item name
 item_desc = []
 item_price =  []
 item_id = []
+sold = []
 bids = [] # number of bid on an item
 bid = [] # last bid on an item
 buyer_id = []
@@ -20,7 +21,7 @@ def task1():
     print(chr(13))
 
     # continue in loop until items are at least 10
-    while item_num<10: 
+    while item_num<3: 
         item_num = int(input("please enter atleast 10 items "))
 
     # populating arrays with initial values
@@ -75,7 +76,8 @@ def task2():
 
         # checking if bid is greater than last bid
         while temp_bid<=bid[temp_id]:
-            temp_bid = int(input("Enter a valid bid "))
+            print("Last bid is,", bid[temp_id], ", Please enter a bid greater than last bid.")
+            temp_bid = int(input("Enter a bid "))
 
         bid[temp_id] = temp_bid # replacing last bid of that item with new bid; the id is also same as index position so it is used for that as well
         bids[temp_id] += 1 # number of bids for that item is incremented 
@@ -87,6 +89,8 @@ def task3():
     total = 0.0
     intrest = 0.0
     sold_no = 0 # number of items sold
+    nobid_no = 0
+    withbid_no = 0
     RATE = 1/10 # 10% auction company intrest rate
     
     for i in range(item_num):
@@ -107,14 +111,18 @@ def task3():
             # items which didn't received any bid
             if bids[i] == 0:
                 print("item", item_id[i], "didn't received any bids")
+                nobid_no += 1
             else:
                 # items which received bids but didn't reached reserved price
                 print("item", item_id[i], "didn't reached reserved price with", bid[i], "as last bid")
+                withbid_no += 1
         else:
             # when first 'if' is false, item is sold so increment number of items sold
             sold_no += 1
 
-    print(sold_no, "items were sold")
+    print(sold_no, "item(s) were sold")
+    print(nobid_no, "item(s) didn't received any bid")
+    print(withbid_no, "didn't reached reserved price")
     print(chr(13))
 
 def main():
