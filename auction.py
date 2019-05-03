@@ -21,7 +21,7 @@ def task1():
     print(chr(13))
 
     # continue in loop until items are at least 10
-    while item_num<3: 
+    while item_num<10: 
         item_num = int(input("please enter atleast 10 items "))
 
     # populating arrays with initial values
