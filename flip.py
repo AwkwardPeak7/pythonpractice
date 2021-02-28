@@ -54,4 +54,5 @@ def main():
     print()
     print(*flip(non_uniform),sep='\n')
 
-#main()
+if __name__ == "__main__":
+    main()
