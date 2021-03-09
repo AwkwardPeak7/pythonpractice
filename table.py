@@ -6,19 +6,32 @@
 
 import sys
 
-try:
-    num = sys.argv[1]
-except IndexError:
-    num = input("Enter the number you want the table of: ")
-
-while True:
+def getNum():
     try:
-        num = int(num)
-        break
-    except ValueError:
+        num = sys.argv[1]
+    except IndexError:
         num = input("Enter the number you want the table of: ")
+    return num
 
-for i in range(1,11):
-    answer = num * i
-    message = "{} x {} = {}".format(num,i,answer)
-    print(message)
+def validateNum(num):
+    while True:
+        try:
+            num = int(num)
+            break
+        except ValueError:
+            print("Invalid Number",file=sys.stderr)
+            num = getNum()
+    return num
+
+def PrintTable(num):
+    for i in range(1,11):
+        answer = num * i
+        table = "{} x {} = {}".format(num,i,answer)
+        print(table)
+
+def main():
+    num = validateNum(getNum())
+    PrintTable(num)
+
+if __name__ == "__main__":
+    main()
