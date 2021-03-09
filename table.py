@@ -14,13 +14,11 @@ def getNum():
     return num
 
 def validateNum(num):
-    while True:
-        try:
-            num = int(num)
-            break
-        except ValueError:
-            print("Invalid Number",file=sys.stderr)
-            num = getNum()
+    try:
+        num = int(num)
+    except ValueError:
+        print("Invalid Number",file=sys.stderr)
+        exit(1)
     return num
 
 def PrintTable(num):
