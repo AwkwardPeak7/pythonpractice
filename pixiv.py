@@ -60,8 +60,9 @@ def main():
         # create correct urls
         direct_urls.append(url.replace("_p0","_p"+str(i)))
 
-        picture = requests.get(direct_urls[i], headers = {"Referer": "https://www.pixiv.net/"})
-        open(cwd + os.path.basename(direct_urls[i]), 'wb').write(picture.content)
+        #picture = requests.get(direct_urls[i], headers = {"Referer": "https://www.pixiv.net/"})
+        #open(cwd + os.path.basename(direct_urls[i]), 'wb').write(picture.content)
+        print(direct_urls[i])
 
 if __name__ == '__main__':
     main()
