@@ -20,3 +20,6 @@ feed_parms= {'translatedLanguage[]':lang , 'order[chapter]':'desc'}
 
 manga_info = json.loads(requests.get(manga_info_url).content)
 manga_feed = json.loads(requests.get(manga_feed_url,parms=feed_parms).content)
+
+rss = e.Element("channel")
+e.SubElement(rss,"title").text = manga_info['data']['attributes']['title']['en']
