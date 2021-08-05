@@ -14,4 +14,6 @@ except IndexError:
     lang = "en"
 
 manga_info_url = "https://api.mangadex.org/manga/" + manga_id
-manga_feed_url = "https://api.mangadex.org/manga/{}/feed?translatedLanguage[]={}&order[chapter]=desc".format(manga_id,lang)
+
+manga_feed_url = "https://api.mangadex.org/manga/{}/feed".format(manga_id)
+feed_parms= {'translatedLanguage[]':lang , 'order[chapter]':'desc'}
