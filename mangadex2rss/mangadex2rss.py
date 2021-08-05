@@ -8,15 +8,10 @@ except IndexError:
     print('No Manga ID Specified', file=sys.stderr)
     exit(1)
 
-try:
-    lang = sys.argv[2]
-except IndexError:
-    lang = "en"
-
 manga_info_url = "https://api.mangadex.org/manga/" + manga_id
 
 manga_feed_url = "https://api.mangadex.org/manga/{}/feed".format(manga_id)
-feed_parms= {'translatedLanguage[]':lang , 'order[chapter]':'desc'}
+feed_parms= {'translatedLanguage[]':'en' , 'order[chapter]':'desc'}
 
 manga_info = json.loads(requests.get(manga_info_url).content)
 manga_feed = json.loads(requests.get(manga_feed_url,parms=feed_parms).content)
