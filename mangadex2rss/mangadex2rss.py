@@ -13,6 +13,7 @@ import sys,json,requests
 import xml.etree.cElementTree as ET
 from io import BytesIO
 import uuid
+import xml.dom.minidom
 
 try:
     manga_id = str(uuid.UUID(sys.argv[1]))
@@ -67,4 +68,4 @@ for result in manga_feed["results"]:
 f = BytesIO()
 rss_feed = ET.ElementTree(root)
 rss_feed.write(f, encoding='utf-8', xml_declaration=True)
-print(f.getvalue().decode('utf-8'))
+print(xml.dom.minidom.parseString(f.getvalue().decode('utf-8')).toprettyxml())
