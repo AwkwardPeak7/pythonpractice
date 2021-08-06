@@ -12,12 +12,18 @@ The UUID can be found in the url of the manga information page e.g:
 import sys,json,requests
 import xml.etree.cElementTree as ET
 from io import BytesIO
+import uuid
 
 try:
-    manga_id = str(sys.argv[1])
+    manga_id = str(uuid.UUID(sys.argv[1]))
 except IndexError:
+    # index error when no argument passed on the cli
     print('No Manga ID Specified', file=sys.stderr)
     exit(1)
+except ValueError:
+    # value error by uuid.UUID when uuid is badly formatted
+    print('Invalid Manga ID Specified.', file=sys.stderr)
+    exit(2)
 
 lang = 'en'
 
@@ -29,8 +35,9 @@ feed_parms= {'translatedLanguage[]':lang , 'order[chapter]':'desc' , 'limit':10}
 manga_info = json.loads(requests.get(manga_info_url).content)
 
 if manga_info["result"] == "error":
-    print('Invalid Manga ID Specified', file=sys.stderr)
-    exit(2)
+    error = manga_info["errors"][0]["title"]
+    print('Invalid Manga ID Specified\nError: '+error, file=sys.stderr)
+    exit(3)
 
 manga_feed = json.loads(requests.get(manga_feed_url,params=feed_parms).content)
 
