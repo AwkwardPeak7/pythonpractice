@@ -1,4 +1,14 @@
 #!/usr/bin/env python
+"""
+This script takes Mangadex manga uuid as first argument and creates
+rss feed for the manga using the official Mangadex v5 api
+
+The UUID can be found in the url of the manga information page e.g:
+    url is https://mangadex.org/title/d86cf65b-5f6c-437d-a0af-19a31f94ec55
+    uuid in this case is d86cf65b-5f6c-437d-a0af-19a31f94ec55
+    uuid is basically the last part of random characters in the url
+"""
+
 import sys,json,requests
 import xml.etree.cElementTree as ET
 from io import BytesIO
