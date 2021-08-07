@@ -23,7 +23,7 @@ except IndexError:
     exit(1)
 except ValueError as e:
     # value error by uuid.UUID when uuid is badly formatted
-    print('Invalid Manga ID Specified\nError: '+str(e), file=sys.stderr)
+    print('Invalid Manga ID Specified.\nError: '+str(e), file=sys.stderr)
     exit(2)
 
 lang = 'en'
