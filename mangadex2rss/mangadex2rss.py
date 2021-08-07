@@ -49,9 +49,29 @@ root.set("version","2.0")
 
 channel = ET.SubElement(root,"channel")
 
-ET.SubElement(channel,"title").text = manga_info['data']['attributes']['title'][lang]
+title_langs = list(manga_info['data']['attributes']['title'].keys())
+if lang in title_langs:
+    ET.SubElement(channel,"title").text = manga_info['data']['attributes']['title'][lang]
+elif 'en' in title_langs:
+    ET.SubElement(channel,"title").text = manga_info['data']['attributes']['title']['en']
+elif 'jp' in title_langs:
+    ET.SubElement(channel,"title").text = manga_info['data']['attributes']['title']['jp']
+else:
+    # if nothing else, just use the first available title
+    ET.SubElement(channel,"title").text = list(manga_info['data']['attributes']['title'].values())[0]
+
 ET.SubElement(channel,"link").text  = "https://mangadex.org/title/" + manga_id
-ET.SubElement(channel,"description").text = manga_info['data']['attributes']['description'][lang]
+
+description_langs = list(manga_info['data']['attributes']['description'].keys())
+if lang in description_langs:
+    ET.SubElement(channel,"description").text = manga_info['data']['attributes']['description'][lang]
+elif 'en' in description_langs:
+    ET.SubElement(channel,"description").text = manga_info['data']['attributes']['description']['en']
+elif 'jp' in description_langs:
+    ET.SubElement(channel,"description").text = manga_info['data']['attributes']['description']['jp']
+else:
+    # if nothing else, just use the first available description
+    ET.SubElement(channel,"description").text = list(manga_info['data']['attributes']['description'].values())[0]
 
 items = []
 count = 0
