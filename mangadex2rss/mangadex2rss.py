@@ -76,13 +76,13 @@ else:
 items = []
 count = 0
 
-for result in manga_feed["results"]:
+for result in manga_feed["data"]:
     items.append('') # increase size of array
     items[count] = ET.SubElement(channel,"item")
-    ET.SubElement(items[count],"title").text = "Chapter " + result["data"]["attributes"]["chapter"]
-    ET.SubElement(items[count],"description").text = result["data"]["attributes"]["title"]
-    ET.SubElement(items[count],"link").text  = "https://mangadex.org/chapter/" + result["data"]["id"]
-    ET.SubElement(items[count],"pubDate").text = result["data"]["attributes"]["publishAt"]
+    ET.SubElement(items[count],"title").text = "Chapter " + result["attributes"]["chapter"]
+    ET.SubElement(items[count],"description").text = result["attributes"]["title"]
+    ET.SubElement(items[count],"link").text  = "https://mangadex.org/chapter/" + result["id"]
+    ET.SubElement(items[count],"pubDate").text = result["attributes"]["publishAt"]
     count += 1
 
 f = BytesIO()
